@@ -3,8 +3,8 @@
 /**
 * _putchar - writes the character c to stdout
 * @c: The character to print
-* Return: On success 1.
-* On error, -1 is returned, and errno is set appropriately.
+* Return: On success 1. On error, -1 is returned,
+* and error is set appropriately.
 */
 int _putchar(char c)
 {
@@ -12,83 +12,97 @@ return (write(1, &c, 1));
 }
 
 /**
-* _puts - writes the string s to stdout
-* @s: The string to print
-* Return: On success the number of characters printed.
-* On error, -1 is returned, and error is set appropriately.
-*/
-int _puts(char *s)
-{
-int i;
-
-for (i = 0; s[i] != '\0'; i++)
-{
-_putchar(s[i]);
-}
-return (i);
-}
-
-/**
-* _print_integer - Prints an integer to stdout
-* @n: The integer to print
+* _printf - Prints output according to a format.
+* @format: The format string.
 * Return: The number of characters printed
-*/
-int _print_integer(int n)
-{
-char buffer[32];
-int printed_chars;
-
-printed_chars = sprintf(buffer, "%d", n);
-printed_chars += _puts(buffer);
-return (printed_chars);
-}
-
-/**
-* _printf - prints output according to a format.
-* @format: a string composed of zero or more directives
-* Return: the number of characters printed (excluding the null byte
-* used to end output to strings)
+* (excluding the null byte used to end output to strings).
 */
 int _printf(const char *format, ...)
 {
-va_list arg_list;
-int printed_chars = 0;
+va_list args;
+int i = 0, count = 0;
 
-va_start(arg_list, format);
-
-while (*format)
+if (format == NULL)
+return (-1);
+va_start(args, format);
+while (format[i])
 {
-if (*format == '%')
+if (format[i] == '%')
 {
-format++;
-switch (*format)
+i++;
+switch (format[i])
 {
 case 'c':
-printed_chars += _putchar(va_arg(arg_list, int));
+count += _putchar(va_arg(args, int));
 break;
 case 's':
-printed_chars += _puts(va_arg(arg_list, char *)
-? va_arg(arg_list, char *) : "(null)");
+count += _print_string(va_arg(args, char *));
 break;
 case '%':
-printed_chars += _putchar('%');
-break;
-default:
-printed_chars += _putchar('%');
-printed_chars += _putchar(*format);
+count += _putchar('%');
 break;
 case 'd': case 'i':
-printed_chars += _print_integer(va_arg(arg_list, int));
+count += _print_int(va_arg(args, int));
 break;
+default:
+_putchar('%');
+_putchar(format[i]);
+count += 2;
 }
 }
 else
 {
-printed_chars += _putchar(*format);
+_putchar(format[i]);
+count++;
 }
-format++;
+i++;
+}
+va_end(args);
+return (count);
 }
 
-va_end(arg_list);
-return (printed_chars);
+/**
+* _print_string - Prints a string.
+* @str: The string to print.
+* Return: The number of characters printed.
+*/
+int _print_string(char *str)
+{
+int i = 0;
+
+if (str == NULL)
+str = "(null)";
+
+while (str[i])
+{
+_putchar(str[i]);
+i++;
+}
+
+return (i);
+}
+
+/**
+* _print_int - Prints an integer.
+* @n: The integer to print.
+* Return: The number of characters printed.
+*/
+int _print_int(int n)
+{
+int count = 0;
+
+if (n < 0)
+{
+_putchar('-');
+count++;
+n = -n;
+}
+
+if (n / 10)
+count += _print_int(n / 10);
+
+_putchar((n % 10) + '0');
+count++;
+
+return (count);
 }

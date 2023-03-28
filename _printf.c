@@ -67,7 +67,8 @@ case 'c':
 printed_chars += _putchar(va_arg(arg_list, int));
 break;
 case 's':
-printed_chars += _puts(va_arg(arg_list, char *) ? va_arg(arg_list, char *) : "(null)");
+printed_chars += _puts(va_arg(arg_list, char *)
+? va_arg(arg_list, char *) : "(null)");
 break;
 case '%':
 printed_chars += _putchar('%');

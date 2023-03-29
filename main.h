@@ -17,7 +17,6 @@ int _print_unsigned_int(unsigned int n);
 int _print_octal(unsigned int n);
 int _print_hex(unsigned int n, int uppercase);
 int handle_conversion_specifier(char specifier, va_list args);
-int print_address(va_list l, flags_t *f);
 
 #endif
 

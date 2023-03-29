@@ -1,10 +1,11 @@
 #include "main.h"
 
 /**
-* _print_binary - Converts an unsigned int argument to binary and prints it.
-* @args: A va_list of arguments containing the unsigned int to be printed.
+* _print_binary - Converts an unsigned int argument 
+* to binary and prints it.
+* @args: A va_list of arguments containing the unsigned int 
+* to be printed.
 * @printed: A pointer to the number of characters printed so far.
-*
 * Return: The number of characters printed.
 */
 int _print_binary(va_list args, int *printed)

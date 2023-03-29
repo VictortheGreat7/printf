@@ -13,6 +13,10 @@ int _print_string(char *str);
 int _print_int(int n);
 int _print_binary(va_list args, int *printed);
 int _print_unsigned(va_list args, int *printed);
+int _print_unsigned_int(unsigned int n);
+int _print_octal(unsigned int n);
+int _print_hex(unsigned int n, int uppercase);
+int handle_conversion_specifier(char specifier, va_list args);
 
 #endif
 

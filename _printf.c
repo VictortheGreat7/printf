@@ -7,8 +7,7 @@
 * (excluding the null byte used to end output to strings).
 */
 int _printf(const char *format, ...)
-{
-va_list args;
+{va_list args;
 int i = 0, count = 0;
 
 if (format == NULL)
@@ -17,11 +16,9 @@ va_start(args, format);
 while (format[i])
 {
 if (format[i] == '%')
-{
-i++;
+{i++;
 switch (format[i])
-{
-case 'c':
+{case 'c':
 count += _putchar(va_arg(args, int));
 break;
 case 's':
@@ -43,8 +40,7 @@ count += 2;
 }
 }
 else
-{
-_putchar(format[i]);
+{_putchar(format[i]);
 count++;
 }
 i++;

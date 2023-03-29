@@ -22,13 +22,11 @@ return (_putchar('%'));
 case 'd':
 case 'i':
 return (_print_int(va_arg(args, int)));
-
 case 'b':
 {
 int count = 0;
 return (_print_binary(args, &count));
 }
-
 case 'u':
 return (_print_unsigned_int(va_arg(args, unsigned int)));
 
@@ -40,6 +38,30 @@ return (_print_hex(va_arg(args, unsigned int), 0));
 
 case 'X':
 return (_print_hex(va_arg(args, unsigned int), 1));
+
+case 'S':
+{
+int i, count = 0;
+char *str = va_arg(args, char *);
+if (str == NULL)
+return (_print_string("(null)"));
+for (i = 0; str[i] != '\0'; i++)
+{
+if ((str[i] > 0 && str[i] < 32) || str[i] >= 127)
+{
+_putchar('\\');
+_putchar('x');
+count += 2;
+count += _print_hex((unsigned int) str[i], 1);
+}
+else
+{
+_putchar(str[i]);
+count++;
+}
+}
+return (count);
+}
 
 default:
 _putchar('%');

@@ -28,4 +28,3 @@ count += _putchar(binary[i] + '0');
 }
 return (count);
 }
-

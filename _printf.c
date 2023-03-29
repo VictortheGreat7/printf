@@ -9,7 +9,7 @@
 int _printf(const char *format, ...)
 {
 va_list args;
-int i = 0, count = 0;
+int i = 0, count = 0, ret = 0;
 
 if (format == NULL)
 return (-1);
@@ -21,7 +21,10 @@ while (format[i])
 if (format[i] == '%')
 {
 i++;
-count += handle_conversion_specifier(format[i], args);
+ret = handle_conversion_specifier(format[i], args);
+if (ret == -1)
+return (-1);
+count += ret;
 }
 else
 {
@@ -32,7 +35,6 @@ i++;
 }
 
 va_end(args);
-
 return (count);
 }
 

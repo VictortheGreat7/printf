@@ -64,9 +64,7 @@ return (count);
 }
 
 default:
-_putchar('%');
-_putchar(specifier);
-return (2);
+return (-1);
 }
 }
 

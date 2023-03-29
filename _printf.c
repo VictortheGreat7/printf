@@ -1,17 +1,6 @@
 #include "main.h"
 
 /**
-* _putchar - writes the character c to stdout
-* @c: The character to print
-* Return: On success 1. On error, -1 is returned,
-* and error is set appropriately.
-*/
-int _putchar(char c)
-{
-return (write(1, &c, 1));
-}
-
-/**
 * _printf - Prints output according to a format.
 * @format: The format string.
 * Return: The number of characters printed
@@ -44,6 +33,9 @@ break;
 case 'd': case 'i':
 count += _print_int(va_arg(args, int));
 break;
+case 'b':
+count += _print_binary(args, &count);
+break;
 default:
 _putchar('%');
 _putchar(format[i]);
@@ -61,48 +53,3 @@ va_end(args);
 return (count);
 }
 
-/**
-* _print_string - Prints a string.
-* @str: The string to print.
-* Return: The number of characters printed.
-*/
-int _print_string(char *str)
-{
-int i = 0;
-
-if (str == NULL)
-str = "(null)";
-
-while (str[i])
-{
-_putchar(str[i]);
-i++;
-}
-
-return (i);
-}
-
-/**
-* _print_int - Prints an integer.
-* @n: The integer to print.
-* Return: The number of characters printed.
-*/
-int _print_int(int n)
-{
-int count = 0;
-
-if (n < 0)
-{
-_putchar('-');
-count++;
-n = -n;
-}
-
-if (n / 10)
-count += _print_int(n / 10);
-
-_putchar((n % 10) + '0');
-count++;
-
-return (count);
-}

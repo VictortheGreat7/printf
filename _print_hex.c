@@ -13,3 +13,4 @@ if (n / 16)
 _print_hex(n / 16, uppercase);
 return (_putchar(hex_digits[n % 16]));
 }
+

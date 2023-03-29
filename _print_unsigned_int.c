@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
-* _print_unsigned - Prints an unsigned integer in decimal notation.
+* _print_unsigned_int - Prints an unsigned integer in decimal notation.
 * @n: The unsigned integer to print.
 * Return: The number of characters printed.
 */

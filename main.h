@@ -15,3 +15,4 @@ int _print_binary(va_list args, int *printed);
 int _print_unsigned(va_list args, int *printed);
 
 #endif
+

@@ -12,15 +12,11 @@ switch (specifier)
 {
 case 'c':
 return (_putchar(va_arg(args, int)));
-
 case 's':
 return (_print_string(va_arg(args, char *)));
-
 case '%':
 return (_putchar('%'));
-
-case 'd':
-case 'i':
+case 'd': case 'i':
 return (_print_int(va_arg(args, int)));
 case 'b':
 {
@@ -29,16 +25,12 @@ return (_print_binary(args, &count));
 }
 case 'u':
 return (_print_unsigned_int(va_arg(args, unsigned int)));
-
 case 'o':
 return (_print_octal(va_arg(args, unsigned int)));
-
 case 'x':
 return (_print_hex(va_arg(args, unsigned int), 0));
-
 case 'X':
 return (_print_hex(va_arg(args, unsigned int), 1));
-
 case 'S':
 {
 int i, count = 0;
@@ -62,8 +54,12 @@ count++;
 }
 return (count);
 }
-
 default:
+if (specifier != '\0') {
+_putchar('%');
+_putchar(specifier);
+return (2);
+}
 return (-1);
 }
 }

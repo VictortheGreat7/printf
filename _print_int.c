@@ -3,23 +3,24 @@
 /**
 * _print_int - Prints an integer.
 * @n: The integer to print.
-*
 * Return: The number of characters printed.
 */
 int _print_int(int n)
 {
-int sign = 1, count = 0;
+int count = 0;
 
 if (n < 0)
 {
-sign = -1;
-count += _putchar('-');
+_putchar('-');
+count++;
+n = -n;
 }
 
 if (n / 10)
-count += _print_int(sign * (n / 10));
+count += _print_int(n / 10);
 
-count += _putchar('0' + sign * (n % 10));
+_putchar((n % 10) + '0');
+count++;
 
 return (count);
 }

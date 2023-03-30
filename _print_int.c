@@ -19,7 +19,7 @@ count += _putchar('-');
 if (n / 10)
 count += _print_int(sign * (n / 10));
 
-count += _putchar('0' + sign *(n % 10));
+count += _putchar('0' + (sign *(n % 10)));
 
 return (count);
 }
